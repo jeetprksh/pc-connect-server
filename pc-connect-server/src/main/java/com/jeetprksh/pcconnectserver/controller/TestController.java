@@ -4,9 +4,11 @@ import com.jeetprksh.pcconnectserver.entity.Test;
 import com.jeetprksh.pcconnectserver.entity.http.Response;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController("test")
 public class TestController {
 

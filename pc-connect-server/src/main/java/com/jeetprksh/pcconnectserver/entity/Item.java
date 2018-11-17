@@ -1,7 +1,5 @@
 package com.jeetprksh.pcconnectserver.entity;
 
-import java.util.List;
-
 public class Item {
 
     private String name;
