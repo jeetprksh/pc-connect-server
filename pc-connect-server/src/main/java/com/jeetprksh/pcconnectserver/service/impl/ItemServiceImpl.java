@@ -19,7 +19,11 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getRootItems() {
         return rootMaps
                 .entrySet().stream()
-                .map(e -> new Item(e.getValue().getName(), e.getValue().isDirectory(), true, e.getKey()))
+                .map(e -> new Item(e.getValue().getName(),
+                                    e.getValue().isDirectory(),
+                                    true,
+                                    e.getKey(),
+                                    ""))
                 .collect(Collectors.toList());
     }
 
@@ -32,7 +36,11 @@ public class ItemServiceImpl implements ItemService {
 
         return Arrays.stream(file.listFiles())
                 .filter(f -> !f.isHidden())
-                .map(f -> new Item(f.getName(), f.isDirectory(), false, null))
+                .map(f -> new Item(f.getName(),
+                                   f.isDirectory(),
+                                   false,
+                                   root,
+                                   path + "/" + f.getName()))
                 .collect(Collectors.toList());
     }
 

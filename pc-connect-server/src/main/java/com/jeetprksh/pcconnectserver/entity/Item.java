@@ -6,12 +6,14 @@ public class Item {
     private boolean isDirectory;
     private boolean isRoot;
     private String rootAlias;
+    private String path;
 
-    public Item(String name, boolean isDirectory, boolean isRoot, String rootAlias) {
+    public Item(String name, boolean isDirectory, boolean isRoot, String rootAlias, String path) {
         this.name = name;
         this.isDirectory = isDirectory;
         this.isRoot = isRoot;
         this.rootAlias = rootAlias;
+        this.path = path;
     }
 
     public String getName() {
@@ -44,5 +46,13 @@ public class Item {
 
     public void setRootAlias(String rootAlias) {
         this.rootAlias = rootAlias;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

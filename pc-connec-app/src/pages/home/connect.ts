@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AppServices } from '../../service/services';
 import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'connect-home',
@@ -12,8 +13,9 @@ export class ConnectPage {
   private address: string = '';
   private port: string = '';
 
-  constructor(public navCtrl: NavController,
-              private service: AppServices) { }
+  constructor(public nav: NavController,
+              private service: AppServices,
+              private storage: Storage) { }
 
   public checkConnection() {
     if (this.address === '' || this.port === '') {
@@ -23,12 +25,13 @@ export class ConnectPage {
     this.service
       .checkConnection(this.address.trim(), this.port.trim())
       .subscribe(response => {
-        if (response.status){
-          this.navCtrl.push(LoginPage, {});
+        if (response.status) {
+          this.storage.set('base-address', `http://${this.address}:${this.port}`);
+          this.nav.push(LoginPage, {});
         }
       },
       error => {
-        alert('Unable to connect error');
+        alert('Unable to connect to the given address');
       });
   }
 

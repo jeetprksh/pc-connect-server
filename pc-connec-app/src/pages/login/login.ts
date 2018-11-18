@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ItemsPage } from '../items/items';
 
 @IonicPage()
 @Component({
@@ -10,11 +11,12 @@ export class LoginPage {
 
   code: string;
 
-  constructor(public navCtrl: NavController,
+  constructor(public nav: NavController,
               public navParams: NavParams) { }
 
   verify(): void {
     console.log('verify', this.code);
+    this.nav.push(ItemsPage, { root: undefined, path: undefined });
   }
 
 }

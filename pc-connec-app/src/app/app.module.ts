@@ -10,6 +10,7 @@ import { ConnectPage } from '../pages/home/connect';
 import { AppServices } from '../service/services';
 import { LoginPage } from '../pages/login/login';
 import { ItemsPage } from '../pages/items/items';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,11 @@ import { ItemsPage } from '../pages/items/items';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(App)
+    IonicModule.forRoot(App),
+    IonicStorageModule.forRoot({
+      name: 'db',
+      driverOrder: ['localstorage', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

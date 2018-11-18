@@ -1,14 +1,15 @@
 export type Response = {
   status: boolean,
   message: string,
-  data: Test | Item
+  data: Test | Item[]
 };
 
 export type Item = {
   name: string,
-  isDirectory: boolean,
+  directory: boolean,
   isRoot: boolean,
-  rootAlias: string
+  rootAlias: string,
+  path: string
 };
 
 export type Test = {

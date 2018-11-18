@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ConnectPage } from '../pages/home/connect';
+
 @Component({
   templateUrl: 'app.html'
 })
