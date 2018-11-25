@@ -18,10 +18,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.logging.Logger;
 
 @CrossOrigin
-@RestController("/")
+@RestController()
 public class ItemController {
+
+    private final Logger logger = Logger.getLogger(ItemController.class.getName());
 
     private ItemService itemService;
     private AuthService authService;
@@ -37,7 +40,8 @@ public class ItemController {
             @RequestParam(value = "root", required = false) String root,
             @RequestParam(value = "path", required = false) String path,
             @RequestHeader("token") String token) throws Exception {
-        authService.verifyToken(token);
+        String user = authService.verifyToken(token);
+        logger.info(user + " accessed the path " + root + "::" + path);
         List<Item> items = (root == null) ? itemService.getRootItems() : itemService.getItems(root, path);
         Response response = new Response(true, "List Items", items);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(response);
@@ -49,7 +53,8 @@ public class ItemController {
             @RequestParam(value = "path", required = false) String path,
             @RequestParam(value = "download", required = false) String download,
             @RequestHeader("token") String token) throws Exception {
-        authService.verifyToken(token);
+        String user = authService.verifyToken(token);
+        logger.info(user + " accessed the file " + root + "::" + path);
         File file = itemService.downloadItem(root, path);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
