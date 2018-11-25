@@ -11,6 +11,8 @@ import { AppServices } from '../service/services';
 import { LoginPage } from '../pages/login/login';
 import { ItemsPage } from '../pages/items/items';
 import { IonicStorageModule } from '@ionic/storage';
+import { StreamingMedia } from '@ionic-native/streaming-media';
+import { File } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     AppServices,
+    StreamingMedia,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -26,7 +26,7 @@ export class ConnectPage {
       .checkConnection(this.address.trim(), this.port.trim())
       .subscribe(response => {
         if (response.status) {
-          this.storage.set('base-address', `http://${this.address}:${this.port}`);
+          this.storage.set('base-address', `http://${this.address.trim()}:${this.port.trim()}`);
           this.nav.push(LoginPage, {});
         }
       },

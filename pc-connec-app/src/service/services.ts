@@ -26,4 +26,8 @@ export class AppServices {
     return this.httpClient.get(url, {responseType: 'blob'}).toPromise();
   }
 
+  public async getBaseUrl(): Promise<string> {
+    return await this.storage.get('base-address');
+  }
+
 }

@@ -64,6 +64,7 @@ public class ItemServiceImpl implements ItemService {
     // TODO currently relying on hardcoded values
     private List<String> getSharedDirectories() {
         List<String> sharedDir = new ArrayList<>();
+        sharedDir.add("C:\\pc-connect");
         return sharedDir;
     }
 
