@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ConnectPage } from '../pages/home/connect';
 
+/*
+* @author Jeet Prakash
+* */
 @Component({
   templateUrl: 'app.html'
 })

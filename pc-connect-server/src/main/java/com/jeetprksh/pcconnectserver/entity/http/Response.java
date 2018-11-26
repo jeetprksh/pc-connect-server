@@ -1,5 +1,8 @@
 package com.jeetprksh.pcconnectserver.entity.http;
 
+/*
+ * @author Jeet Prakash
+ * */
 public class Response {
 
     private boolean status;

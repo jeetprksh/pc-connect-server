@@ -1,5 +1,8 @@
 package com.jeetprksh.pcconnectserver.entity;
 
+/*
+ * @author Jeet Prakash
+ * */
 public class Item {
 
     private String name;

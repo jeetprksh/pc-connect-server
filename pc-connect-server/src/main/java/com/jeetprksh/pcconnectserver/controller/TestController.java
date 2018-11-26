@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+ * @author Jeet Prakash
+ * */
 @CrossOrigin
-@RestController("test")
+@RestController()
 public class TestController {
 
-    @GetMapping()
+    @GetMapping("/connect/test")
     public ResponseEntity<? extends Response> test() {
         Response res = new Response(true, "Test Ping.", new Test("I am OK!"));
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(res);

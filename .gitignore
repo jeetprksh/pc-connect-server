@@ -24,7 +24,7 @@
 /nbdist/
 /.nb-gradle/
 
-pc-connec-app/.editorconfig
+**/.editorconfig
 *~
 *.sw[mnpcod]
 *.log
@@ -57,3 +57,4 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+**/package-lock.json
