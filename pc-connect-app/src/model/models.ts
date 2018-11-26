@@ -4,7 +4,7 @@
 export type Response = {
   status: boolean,
   message: string,
-  data: Test | Item[]
+  data: Test | Item[] | Token
 };
 
 export type Item = {
@@ -17,4 +17,8 @@ export type Item = {
 
 export type Test = {
   message: string
+}
+
+export type Token = {
+  token: string
 }

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ItemsPage } from '../items/items';
+import { AppServices } from '../../service/services';
+import { Storage } from '../../service/storage.service';
+import { Token } from '../../model/models';
 
 /*
 * @author Jeet Prakash
@@ -12,14 +15,28 @@ import { ItemsPage } from '../items/items';
 })
 export class LoginPage {
 
+  name: string;
   code: string;
 
   constructor(public nav: NavController,
-              public navParams: NavParams) { }
+              public navParams: NavParams,
+              private service: AppServices,
+              private storage: Storage) { }
 
   verify(): void {
-    console.log('verify', this.code);
-    this.nav.push(ItemsPage, { root: undefined, path: undefined });
+    console.log('verify', this.name, this.code);
+    let name = this.name.trim();
+    let encodedCode = btoa(this.code.trim());
+    this.service.verifyUser(name, encodedCode).subscribe(response => {
+      if (response.status){
+        let token = response.data as Token;
+        this.storage.store('token', token.token);
+        this.nav.push(ItemsPage, { root: undefined, path: undefined });
+      }
+
+      else
+        alert(response.message);
+    }, err => alert('Can not verify code.'));
   }
 
 }

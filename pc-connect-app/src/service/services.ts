@@ -17,6 +17,12 @@ export class AppServices {
     return this.httpClient.get<Response>(`http://${serverAddress}:${serverPort}/connect/test`);
   }
 
+  public verifyUser(name: string, encoded: string): Observable<Response> {
+    let baseUrl = this.storage.retrieve('base-address');
+    let url = baseUrl + `/user/code/verify?name=${name}&encoded=${encoded}`;
+    return this.httpClient.get<Response>(url);
+  }
+
   public getItems(root: string, path: string): Observable<Response> {
     let baseUrl = this.storage.retrieve('base-address');
     let url = root ? baseUrl + `/items?root=${root}&path=${path}` : baseUrl + `/items`;
