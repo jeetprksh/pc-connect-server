@@ -1,3 +1,6 @@
+/*
+* @author Jeet Prakash
+* */
 export type Response = {
   status: boolean,
   message: string,

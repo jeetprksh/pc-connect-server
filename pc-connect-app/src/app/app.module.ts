@@ -14,6 +14,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 import { File } from '@ionic-native/file';
 
+/*
+* @author Jeet Prakash
+* */
 @NgModule({
   declarations: [
     App,

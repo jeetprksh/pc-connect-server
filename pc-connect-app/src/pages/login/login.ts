@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ItemsPage } from '../items/items';
 
+/*
+* @author Jeet Prakash
+* */
 @IonicPage()
 @Component({
   selector: 'page-login',

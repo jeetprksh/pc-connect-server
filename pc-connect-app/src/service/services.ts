@@ -4,6 +4,9 @@ import { Observable } from "rxjs";
 import { Response } from '../model/models';
 import { Storage } from "@ionic/storage";
 
+/*
+* @author Jeet Prakash
+* */
 @Injectable()
 export class AppServices {
 

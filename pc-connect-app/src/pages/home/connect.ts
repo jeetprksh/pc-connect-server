@@ -4,6 +4,9 @@ import { AppServices } from '../../service/services';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
 
+/*
+* @author Jeet Prakash
+* */
 @Component({
   selector: 'connect-home',
   templateUrl: 'connect.html'

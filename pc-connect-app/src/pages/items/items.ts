@@ -5,6 +5,9 @@ import { Item } from '../../model/models';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 import { File } from '@ionic-native/file';
 
+/*
+* @author Jeet Prakash
+* */
 @IonicPage()
 @Component({
   selector: 'page-items',
