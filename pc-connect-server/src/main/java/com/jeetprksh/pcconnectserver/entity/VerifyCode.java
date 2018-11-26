@@ -1,5 +1,8 @@
 package com.jeetprksh.pcconnectserver.entity;
 
+/*
+ * @author Jeet Prakash
+ * */
 public class VerifyCode {
 
     private String name;

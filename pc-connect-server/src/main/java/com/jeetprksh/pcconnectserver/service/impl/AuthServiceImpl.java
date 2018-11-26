@@ -11,6 +11,9 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+/*
+ * @author Jeet Prakash
+ * */
 @Component
 public class AuthServiceImpl implements AuthService {
 
@@ -46,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String generateCode() {
-        this.code = new Random().ints(0,9)
+        this.code = new Random().ints(0, 9)
                                 .limit(6)
                                 .boxed()
                                 .map(i -> Integer.toString(i))
