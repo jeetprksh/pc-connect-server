@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AppServices } from '../../service/services';
 import { LoginPage } from '../login/login';
-import { Storage } from '@ionic/storage';
+import { Storage } from '../../service/storage.service';
 
 /*
 * @author Jeet Prakash
@@ -29,7 +29,7 @@ export class ConnectPage {
       .checkConnection(this.address.trim(), this.port.trim())
       .subscribe(response => {
         if (response.status) {
-          this.storage.set('base-address', `http://${this.address.trim()}:${this.port.trim()}`);
+          this.storage.store('base-address', `http://${this.address.trim()}:${this.port.trim()}`);
           this.nav.push(LoginPage, {});
         }
       },

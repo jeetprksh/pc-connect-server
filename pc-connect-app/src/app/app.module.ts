@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule }   from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }   from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -10,9 +10,10 @@ import { ConnectPage } from '../pages/home/connect';
 import { AppServices } from '../service/services';
 import { LoginPage } from '../pages/login/login';
 import { ItemsPage } from '../pages/items/items';
-import { IonicStorageModule } from '@ionic/storage';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 import { File } from '@ionic-native/file';
+import { Storage } from '../service/storage.service';
+import { AddHeaderInterceptor } from '../service/add-header.interceptor';
 
 /*
 * @author Jeet Prakash
@@ -27,11 +28,7 @@ import { File } from '@ionic-native/file';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(App),
-    IonicStorageModule.forRoot({
-      name: 'db',
-      driverOrder: ['localstorage', 'websql']
-    })
+    IonicModule.forRoot(App)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +42,14 @@ import { File } from '@ionic-native/file';
     SplashScreen,
     AppServices,
     StreamingMedia,
+    Storage,
     File,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true,
+      deps: [Storage]
+    },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

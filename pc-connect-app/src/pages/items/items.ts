@@ -4,6 +4,7 @@ import { AppServices } from '../../service/services';
 import { Item } from '../../model/models';
 import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media';
 import { File } from '@ionic-native/file';
+import { Storage } from '../../service/storage.service';
 
 /*
 * @author Jeet Prakash
@@ -21,12 +22,13 @@ export class ItemsPage {
               public navParams: NavParams,
               private service: AppServices,
               private streamMedia: StreamingMedia,
+              private storage: Storage,
               private file: File) {
     this.loadItems(navParams.get('root'), navParams.get('path'));
   }
 
   loadItems(root: string, path: string) {
-    this.service.getItems(root, path).then(res => {
+    this.service.getItems(root, path).subscribe(res => {
       console.log(res);
       this.items = res.data as Item[];
     }, err =>{
@@ -34,7 +36,7 @@ export class ItemsPage {
     });
   }
 
-  async itemTapped(item: Item) {
+  itemTapped(item: Item) {
     if(item.directory) {
       this.navCtrl.push(ItemsPage, {root: item.rootAlias, path: item.path});
     } else {
@@ -45,7 +47,7 @@ export class ItemsPage {
         shouldAutoClose: true,
         controls: true
       };
-      let baseUrl = await this.service.getBaseUrl();
+      let baseUrl = this.storage.retrieve('base-url');
       let mediaUrl = baseUrl + `/item/download?root=${item.rootAlias}&path=${item.path}&download`;
       this.streamMedia.playVideo(mediaUrl, options);
     }
@@ -55,15 +57,13 @@ export class ItemsPage {
     if(item.directory) return;
     console.log(item);
     this.service
-      .downloadItem(item.rootAlias, item.path)
-      .then(blobContent => {
+      .downloadItem(item.rootAlias, item.path).subscribe(blobContent => {
         let fileName = item.path.split('/')[item.path.split('/').length - 1];
         fileName = fileName ? fileName : item.path;
         this.file.writeFile(this.file.dataDirectory, fileName, blobContent, {replace: true}).then(res => {
           alert(JSON.stringify(res));
         });
-      })
-      .catch(err => console.log(err));
+      }, err => alert('Download err ' + err));
   }
 
 }
