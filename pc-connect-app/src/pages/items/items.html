@@ -3,25 +3,27 @@
     <ion-title>Items</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <ion-item tappable *ngFor="let item of items" (click)="itemTapped(item)">
-    <ion-grid>
-      <ion-row>
+<ion-content>
+  <ion-list>
+    <ion-item tappable *ngFor="let item of items">
+      <ion-grid>
+        <ion-row>
 
-        <ion-col col-1>
-          <ion-icon *ngIf="item.directory" ios="ios-folder" md="md-folder"></ion-icon>
-          <ion-icon *ngIf="!item.directory" ios="ios-document" md="md-document"></ion-icon>
-        </ion-col>
+          <ion-col col-1>
+            <ion-icon *ngIf="item.directory" ios="ios-folder" md="md-folder"></ion-icon>
+            <ion-icon *ngIf="!item.directory" ios="ios-document" md="md-document"></ion-icon>
+          </ion-col>
 
-        <ion-col col-10>
-          {{item.name}}
-        </ion-col>
+          <ion-col col-10 (click)="itemTapped(item)">
+            {{item.name}}
+          </ion-col>
 
-        <ion-col col-1>
-          <ion-icon *ngIf="!item.directory" (click)="itemDownload(item)" text-right ios="ios-download" md="md-download"></ion-icon>
-        </ion-col>
+          <ion-col col-1>
+            <ion-icon *ngIf="!item.directory" (click)="itemDownload(item)" text-right ios="ios-download" md="md-download"></ion-icon>
+          </ion-col>
 
-      </ion-row>
-    </ion-grid>
-  </ion-item>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>

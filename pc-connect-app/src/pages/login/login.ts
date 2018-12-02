@@ -24,7 +24,6 @@ export class LoginPage {
               private storage: Storage) { }
 
   verify(): void {
-    console.log('verify', this.name, this.code);
     let name = this.name.trim();
     let encodedCode = btoa(this.code.trim());
     this.service.verifyUser(name, encodedCode).subscribe(response => {
@@ -32,11 +31,10 @@ export class LoginPage {
         let token = response.data as Token;
         this.storage.store('token', token.token);
         this.nav.push(ItemsPage, { root: undefined, path: undefined });
-      }
-
-      else
+      } else {
         alert(response.message);
-    }, err => alert('Can not verify code.'));
+      }
+    }, err => alert('Can not verify code. ' + err));
   }
 
 }
