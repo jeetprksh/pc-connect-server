@@ -29,7 +29,6 @@ export class ItemsPage {
 
   loadItems(root: string, path: string) {
     this.service.getItems(root, path).subscribe(res => {
-      console.log(res);
       this.items = res.data as Item[];
     }, err =>{
       alert('Unable to list Items');
@@ -55,15 +54,17 @@ export class ItemsPage {
 
   itemDownload(item: Item): void {
     if(item.directory) return;
-    console.log(item);
     this.service
-      .downloadItem(item.rootAlias, item.path).subscribe(blobContent => {
+      .downloadItem(item.rootAlias, item.path).subscribe(blob => {
         let fileName = item.path.split('/')[item.path.split('/').length - 1];
         fileName = fileName ? fileName : item.path;
-        this.file.writeFile(this.file.dataDirectory, fileName, blobContent, {replace: true}).then(res => {
-          alert(JSON.stringify(res));
+        this.file.writeFile(this.file.externalRootDirectory + '/pc-connect', fileName, blob, {replace: false}).then(res => {
+          alert('File saved');
+        }).catch(error => {
+          error.message === 'PATH_EXISTS_ERR' ?
+              alert('You already have a file with same name on this location.') : alert('Can not save the file');
         });
-      }, err => alert('Download err ' + err));
+      }, err => alert('Unable to download ' + err));
   }
 
 }
