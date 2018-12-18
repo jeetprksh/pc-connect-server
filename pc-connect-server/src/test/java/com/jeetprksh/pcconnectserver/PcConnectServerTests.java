@@ -5,9 +5,12 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/*
+ * @author Jeet Prakash
+ * */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PcConnectAppTests {
+public class PcConnectServerTests {
 
 	@Test
 	public void contextLoads() {

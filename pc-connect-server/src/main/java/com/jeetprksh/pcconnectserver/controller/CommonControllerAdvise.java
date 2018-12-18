@@ -14,7 +14,6 @@ public class CommonControllerAdvise {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<? extends Response> exception(Exception ex) {
-        ex.printStackTrace();
         if (ex.getMessage().equalsIgnoreCase("Invalid Token"))
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new Response(false, ex.getMessage(), null));
