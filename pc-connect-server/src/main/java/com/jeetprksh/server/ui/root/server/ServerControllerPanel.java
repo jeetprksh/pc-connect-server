@@ -4,12 +4,15 @@ import com.jeetprksh.pcconnectserver.PcConnectServer;
 
 import javax.swing.*;
 
-public class ServerControllerFrame extends JPanel {
+/*
+ * @author Jeet Prakash
+ * */
+public class ServerControllerPanel extends JPanel {
 
     private JButton startServer;
     private JButton restartServer;
 
-    public  ServerControllerFrame() {
+    public ServerControllerPanel() {
         createButtons();
     }
 

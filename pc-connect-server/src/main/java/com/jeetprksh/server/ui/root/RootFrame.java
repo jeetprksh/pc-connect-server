@@ -1,15 +1,18 @@
 package com.jeetprksh.server.ui.root;
 
-import com.jeetprksh.server.ui.root.server.ServerControllerFrame;
+import com.jeetprksh.server.ui.root.server.ServerControllerPanel;
 
 import javax.swing.*;
 
+/*
+ * @author Jeet Prakash
+ * */
 public class RootFrame extends JFrame {
 
-    private ServerControllerFrame serverControllerFrame;
+    private ServerControllerPanel serverControllerPanel;
 
     public RootFrame() {
-        serverControllerFrame = new ServerControllerFrame();
+        serverControllerPanel = new ServerControllerPanel();
         createFrame();
     }
 
@@ -19,7 +22,7 @@ public class RootFrame extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.add(serverControllerFrame);
+        this.add(serverControllerPanel);
     }
 
 }
