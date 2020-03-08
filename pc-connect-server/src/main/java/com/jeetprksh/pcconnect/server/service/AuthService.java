@@ -1,7 +1,7 @@
-package com.jeetprksh.pcconnectserver.service;
+package com.jeetprksh.pcconnect.server.service;
 
-import com.jeetprksh.pcconnectserver.entity.Token;
-import com.jeetprksh.pcconnectserver.entity.VerifyCode;
+import com.jeetprksh.pcconnect.server.entity.Token;
+import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 
 /*
  * @author Jeet Prakash

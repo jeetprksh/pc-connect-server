@@ -1,7 +1,7 @@
-package com.jeetprksh.pcconnectserver.controller;
+package com.jeetprksh.pcconnect.server.controller;
 
-import com.jeetprksh.pcconnectserver.entity.Test;
-import com.jeetprksh.pcconnectserver.entity.http.Response;
+import com.jeetprksh.pcconnect.server.entity.Test;
+import com.jeetprksh.pcconnect.server.entity.http.Response;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

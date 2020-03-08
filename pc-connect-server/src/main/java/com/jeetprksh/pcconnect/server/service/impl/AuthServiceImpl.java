@@ -1,8 +1,8 @@
-package com.jeetprksh.pcconnectserver.service.impl;
+package com.jeetprksh.pcconnect.server.service.impl;
 
-import com.jeetprksh.pcconnectserver.entity.Token;
-import com.jeetprksh.pcconnectserver.entity.VerifyCode;
-import com.jeetprksh.pcconnectserver.service.AuthService;
+import com.jeetprksh.pcconnect.server.entity.Token;
+import com.jeetprksh.pcconnect.server.entity.VerifyCode;
+import com.jeetprksh.pcconnect.server.service.AuthService;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

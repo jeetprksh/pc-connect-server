@@ -1,6 +1,6 @@
-package com.jeetprksh.server.ui.root;
+package com.jeetprksh.pcconnect.ui.root;
 
-import com.jeetprksh.server.ui.root.server.ServerControllerPanel;
+import com.jeetprksh.pcconnect.ui.root.server.ServerControllerPanel;
 
 import javax.swing.*;
 

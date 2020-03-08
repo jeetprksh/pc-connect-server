@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnectserver;
+package com.jeetprksh.pcconnect.server;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;

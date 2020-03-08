@@ -1,6 +1,6 @@
-package com.jeetprksh.server.ui;
+package com.jeetprksh.pcconnect.ui;
 
-import com.jeetprksh.server.ui.root.RootFrame;
+import com.jeetprksh.pcconnect.ui.root.RootFrame;
 
 import javax.swing.*;
 import java.util.logging.Logger;
