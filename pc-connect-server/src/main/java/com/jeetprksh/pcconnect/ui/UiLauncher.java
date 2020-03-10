@@ -19,12 +19,13 @@ public class UiLauncher {
     }
 
     private void run() {
+        logger.info("Starting Server UI.");
         java.awt.EventQueue.invokeLater(() -> {
             try {
                 rootFrame.setVisible(true);
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception ex) {
-                logger.severe("Unable to initialize UI " + ex.getMessage());
+                logger.severe("Unable to initialize UI " + ex.getLocalizedMessage());
             }
         });
     }
