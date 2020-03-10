@@ -1,6 +1,6 @@
-package com.jeetprksh.pcconnectserver.service;
+package com.jeetprksh.pcconnect.server.service;
 
-import com.jeetprksh.pcconnectserver.entity.Item;
+import com.jeetprksh.pcconnect.server.entity.Item;
 
 import java.io.File;
 import java.util.List;

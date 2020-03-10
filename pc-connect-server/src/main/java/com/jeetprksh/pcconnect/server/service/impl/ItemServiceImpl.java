@@ -1,7 +1,7 @@
-package com.jeetprksh.pcconnectserver.service.impl;
+package com.jeetprksh.pcconnect.server.service.impl;
 
-import com.jeetprksh.pcconnectserver.entity.Item;
-import com.jeetprksh.pcconnectserver.service.ItemService;
+import com.jeetprksh.pcconnect.server.entity.Item;
+import com.jeetprksh.pcconnect.server.service.ItemService;
 import org.springframework.stereotype.Component;
 
 import java.io.File;

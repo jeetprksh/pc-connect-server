@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnectserver.entity.http;
+package com.jeetprksh.pcconnect.server.entity.http;
 
 /*
  * @author Jeet Prakash

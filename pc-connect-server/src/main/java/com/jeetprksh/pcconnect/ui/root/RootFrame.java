@@ -1,6 +1,6 @@
-package com.jeetprksh.server.ui.root;
+package com.jeetprksh.pcconnect.ui.root;
 
-import com.jeetprksh.server.ui.root.server.ServerControllerPanel;
+import com.jeetprksh.pcconnect.ui.root.server.ServerControlPanel;
 
 import javax.swing.*;
 
@@ -9,10 +9,10 @@ import javax.swing.*;
  * */
 public class RootFrame extends JFrame {
 
-    private ServerControllerPanel serverControllerPanel;
+    private ServerControlPanel serverControlPanel;
 
     public RootFrame() {
-        serverControllerPanel = new ServerControllerPanel();
+        serverControlPanel = new ServerControlPanel();
         createFrame();
     }
 
@@ -22,7 +22,7 @@ public class RootFrame extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.add(serverControllerPanel);
+        this.add(serverControlPanel);
     }
 
 }

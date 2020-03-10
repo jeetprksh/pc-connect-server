@@ -1,9 +1,9 @@
-package com.jeetprksh.pcconnectserver.controller;
+package com.jeetprksh.pcconnect.server.controller;
 
-import com.jeetprksh.pcconnectserver.entity.Item;
-import com.jeetprksh.pcconnectserver.entity.http.Response;
-import com.jeetprksh.pcconnectserver.service.AuthService;
-import com.jeetprksh.pcconnectserver.service.ItemService;
+import com.jeetprksh.pcconnect.server.entity.Item;
+import com.jeetprksh.pcconnect.server.entity.http.Response;
+import com.jeetprksh.pcconnect.server.service.AuthService;
+import com.jeetprksh.pcconnect.server.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;

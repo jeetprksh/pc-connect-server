@@ -1,6 +1,6 @@
-package com.jeetprksh.server.ui;
+package com.jeetprksh.pcconnect.ui;
 
-import com.jeetprksh.server.ui.root.RootFrame;
+import com.jeetprksh.pcconnect.ui.root.RootFrame;
 
 import javax.swing.*;
 import java.util.logging.Logger;
@@ -19,12 +19,13 @@ public class UiLauncher {
     }
 
     private void run() {
+        logger.info("Starting Server UI.");
         java.awt.EventQueue.invokeLater(() -> {
             try {
                 rootFrame.setVisible(true);
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception ex) {
-                logger.severe("Unable to initialize UI " + ex.getMessage());
+                logger.severe("Unable to initialize UI " + ex.getLocalizedMessage());
             }
         });
     }
