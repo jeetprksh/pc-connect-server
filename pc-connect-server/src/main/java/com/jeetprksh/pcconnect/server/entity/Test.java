@@ -5,17 +5,17 @@ package com.jeetprksh.pcconnect.server.entity;
  * */
 public class Test {
 
-    private String message;
+  private String message;
 
-    public Test(String message) {
-        this.message = message;
-    }
+  public Test(String message) {
+    this.message = message;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 }
