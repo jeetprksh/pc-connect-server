@@ -1,9 +1,9 @@
 package com.jeetprksh.pcconnect.ui.root.server;
 
 import com.jeetprksh.pcconnect.server.PcConnectServer;
+import com.jeetprksh.pcconnect.server.entity.ServerParams;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 /*
  * @author Jeet Prakash
@@ -13,10 +13,12 @@ public class ServerControlPanel extends JPanel {
   private JButton startServer;
   private JButton restartServer;
   private JButton stopServer;
-
   private JTextField serverPort;
 
-  public ServerControlPanel() {
+  private SharedDirectoriesPanel sharedDirectoriesPanel;
+
+  public ServerControlPanel(SharedDirectoriesPanel sharedDirectoriesPanel) {
+    this.sharedDirectoriesPanel = sharedDirectoriesPanel;
     createButtons();
   }
 
@@ -25,10 +27,10 @@ public class ServerControlPanel extends JPanel {
 
     startServer = new JButton("Start");
     startServer.addActionListener((event) -> {
-      String port = serverPort.getText();
-      if (isNumber(port)) {
+      ServerParams params = new ServerParams(serverPort.getText(), sharedDirectoriesPanel.getSharedDirectories());
+      if (isNumber(params.getServerPort())) {
         try {
-          PcConnectServer.start(port);
+          PcConnectServer.start(params);
         } catch (Exception ex) {
           showError(ex.getMessage());
         }
@@ -39,10 +41,10 @@ public class ServerControlPanel extends JPanel {
 
     restartServer = new JButton("Restart");
     restartServer.addActionListener((event) -> {
-      String port = serverPort.getText();
-      if (isNumber(port)) {
+      ServerParams params = new ServerParams(serverPort.getText(), sharedDirectoriesPanel.getSharedDirectories());
+      if (isNumber(params.getServerPort())) {
         try {
-          PcConnectServer.restart(port);
+          PcConnectServer.restart(params);
         } catch (Exception ex) {
           showError(ex.getMessage());
         }

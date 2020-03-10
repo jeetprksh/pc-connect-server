@@ -1,6 +1,7 @@
 package com.jeetprksh.pcconnect.ui.root;
 
 import com.jeetprksh.pcconnect.ui.root.server.ServerControlPanel;
+import com.jeetprksh.pcconnect.ui.root.server.SharedDirectoriesPanel;
 
 import javax.swing.*;
 
@@ -10,9 +11,11 @@ import javax.swing.*;
 public class RootFrame extends JFrame {
 
   private ServerControlPanel serverControlPanel;
+  private SharedDirectoriesPanel sharedDirectoriesPanel;
 
   public RootFrame() {
-    serverControlPanel = new ServerControlPanel();
+    sharedDirectoriesPanel = new SharedDirectoriesPanel();
+    serverControlPanel = new ServerControlPanel(sharedDirectoriesPanel);
     createFrame();
   }
 
@@ -23,6 +26,7 @@ public class RootFrame extends JFrame {
     this.setLocationRelativeTo(null);
     this.setResizable(false);
     this.add(serverControlPanel);
+    this.add(sharedDirectoriesPanel);
   }
 
 }

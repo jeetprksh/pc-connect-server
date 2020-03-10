@@ -1,5 +1,6 @@
 package com.jeetprksh.pcconnect.server.service.impl;
 
+import com.jeetprksh.pcconnect.server.PcConnectServer;
 import com.jeetprksh.pcconnect.server.entity.Item;
 import com.jeetprksh.pcconnect.server.service.ItemService;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class ItemServiceImpl implements ItemService {
 
   private static Logger logger = Logger.getLogger(ItemServiceImpl.class.getName());
+
   private Map<String, File> rootMaps = new HashMap<>();
 
   @Override
@@ -60,15 +62,8 @@ public class ItemServiceImpl implements ItemService {
 
   @Override
   public void initSharedRootDir() {
-    getSharedDirectories()
+    PcConnectServer.getSharedDirectories()
         .forEach(dir -> rootMaps.put(Integer.toString(Objects.hashCode(dir)), new File(dir)));
-  }
-
-  // TODO currently relying on hardcoded values
-  private List<String> getSharedDirectories() {
-    List<String> sharedDir = new ArrayList<>();
-    sharedDir.add("C:\\pc-connect");
-    return sharedDir;
   }
 
   private String createRequestedPath(String root, String path) {
