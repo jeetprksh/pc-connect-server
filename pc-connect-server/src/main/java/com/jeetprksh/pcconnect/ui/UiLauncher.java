@@ -10,24 +10,24 @@ import java.util.logging.Logger;
  * */
 public class UiLauncher {
 
-    private static Logger logger = Logger.getLogger(UiLauncher.class.getName());
+  private static Logger logger = Logger.getLogger(UiLauncher.class.getName());
 
-    private RootFrame rootFrame = new RootFrame();
+  private RootFrame rootFrame = new RootFrame();
 
-    public static void main(String args[]) {
-        new UiLauncher().run();
-    }
+  public static void main(String args[]) {
+    new UiLauncher().run();
+  }
 
-    private void run() {
-        logger.info("Starting Server UI.");
-        java.awt.EventQueue.invokeLater(() -> {
-            try {
-                rootFrame.setVisible(true);
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception ex) {
-                logger.severe("Unable to initialize UI " + ex.getLocalizedMessage());
-            }
-        });
-    }
+  private void run() {
+    logger.info("Starting Server UI.");
+    java.awt.EventQueue.invokeLater(() -> {
+      try {
+        rootFrame.setVisible(true);
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+      } catch (Exception ex) {
+        logger.severe("Unable to initialize UI " + ex.getLocalizedMessage());
+      }
+    });
+  }
 
 }

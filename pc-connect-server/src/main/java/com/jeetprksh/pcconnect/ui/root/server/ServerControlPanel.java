@@ -9,69 +9,42 @@ import javax.swing.*;
  * */
 public class ServerControlPanel extends JPanel {
 
-    private JButton startServer;
-    private JButton restartServer;
-    private JButton stopServer;
+  private JButton startServer;
+  private JButton restartServer;
+  private JButton stopServer;
+  private JTextField serverPort;
 
-    private JTextField serverPort;
+  private SharedDirectoriesPanel sharedDirectoriesPanel;
 
-    public ServerControlPanel() {
-        createButtons();
-    }
+  public ServerControlPanel(SharedDirectoriesPanel sharedDirectoriesPanel) {
+    this.sharedDirectoriesPanel = sharedDirectoriesPanel;
+    createUI();
+  }
 
-    private void createButtons() {
-        serverPort = new JTextField(6);
+  private void createUI() {
+    serverPort = new JTextField(6);
 
-        startServer = new JButton("Start");
-        startServer.addActionListener((event) -> {
-            String port = serverPort.getText();
-            if (isNumber(port)) {
-                try {
-                    PcConnectServer.start(port);
-                } catch (Exception ex) {
-                    showError(ex.getMessage());
-                }
-            } else {
-                showError("Server Port is not a valid number.");
-            }
-        });
+    startServer = new JButton("Start");
+    startServer.addActionListener(new StartServer(this));
 
-        restartServer = new JButton("Restart");
-        restartServer.addActionListener((event) -> {
-            String port = serverPort.getText();
-            if (isNumber(port)) {
-                try {
-                    PcConnectServer.restart(port);
-                } catch (Exception ex) {
-                    showError(ex.getMessage());
-                }
-            } else {
-                showError("Server Port is not a valid number.");
-            }
-        });
+    restartServer = new JButton("Restart");
+    restartServer.addActionListener(new RestartServer(this));
 
-        stopServer = new JButton("Stop");
-        stopServer.addActionListener((event) -> {
-            PcConnectServer.stop();
-        });
+    stopServer = new JButton("Stop");
+    stopServer.addActionListener((event) -> PcConnectServer.stop());
 
-        this.add(serverPort);
-        this.add(startServer);
-        this.add(stopServer);
-        this.add(restartServer);
-    }
+    this.add(serverPort);
+    this.add(startServer);
+    this.add(stopServer);
+    this.add(restartServer);
+  }
 
-    private boolean isNumber(String port) {
-        try {
-            Integer.parseInt(port);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
-    }
+  JTextField getServerPort() {
+    return serverPort;
+  }
 
-    private void showError(String message) {
-        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
-    }
+  SharedDirectoriesPanel getSharedDirectoriesPanel() {
+    return sharedDirectoriesPanel;
+  }
 
 }

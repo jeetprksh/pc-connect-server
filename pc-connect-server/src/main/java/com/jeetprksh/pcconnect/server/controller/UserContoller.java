@@ -19,15 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController()
 public class UserContoller {
 
-    @Autowired
-    private AuthService authService;
+  @Autowired
+  private AuthService authService;
 
-    @GetMapping("/user/code/verify")
-    public ResponseEntity<? extends Response> verifyCode(
-            @RequestParam(value = "name") String name,
-            @RequestParam(value = "encoded") String encoded) throws Exception {
-        byte[] decoded = Base64.decodeBase64(encoded);
-        Token token = authService.validateCode(new VerifyCode(name, new String(decoded)));
-        return ResponseEntity.ok().body(new Response(true, "Code Validated", token));
-    }
+  @GetMapping("/user/code/verify")
+  public ResponseEntity<? extends Response> verifyCode(
+      @RequestParam(value = "name") String name,
+      @RequestParam(value = "encoded") String encoded) throws Exception {
+    Token token = authService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
+    return ResponseEntity.ok().body(new Response(true, "Code Validated", token));
+  }
 }

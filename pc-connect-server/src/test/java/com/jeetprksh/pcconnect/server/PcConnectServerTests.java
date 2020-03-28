@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnectserver;
+package com.jeetprksh.pcconnect.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

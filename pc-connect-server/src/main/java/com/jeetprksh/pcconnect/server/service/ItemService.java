@@ -10,9 +10,12 @@ import java.util.List;
  * */
 public interface ItemService {
 
-    List<Item> getRootItems();
-    List<Item> getItems(String root, String path) throws Exception;
-    File downloadItem(String root, String path) throws Exception;
-    void initSharedRootDir();
+  List<Item> getRootItems();
+
+  List<Item> getItems(String root, String path) throws Exception;
+
+  File downloadItem(String root, String path) throws Exception;
+
+  void initSharedRootDir();
 
 }

@@ -8,10 +8,10 @@ import com.jeetprksh.pcconnect.server.entity.VerifyCode;
  * */
 public interface AuthService {
 
-    Token validateCode(VerifyCode verifyCode) throws Exception;
+  Token validateCode(VerifyCode verifyCode) throws Exception;
 
-    String verifyToken(String token) throws Exception;
+  String verifyToken(String token) throws Exception;
 
-    String generateCode();
+  String generateCode();
 
 }
