@@ -26,8 +26,7 @@ public class UserContoller {
   public ResponseEntity<? extends Response> verifyCode(
       @RequestParam(value = "name") String name,
       @RequestParam(value = "encoded") String encoded) throws Exception {
-    byte[] decoded = Base64.decodeBase64(encoded);
-    Token token = authService.validateCode(new VerifyCode(name, new String(decoded)));
+    Token token = authService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
     return ResponseEntity.ok().body(new Response(true, "Code Validated", token));
   }
 }

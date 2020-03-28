@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 /*
  * @author Jeet Prakash
  * */
-public class RestartServer implements ServerActionListener {
+public class StartServer implements ServerActionListener {
 
   private ServerControlPanel panel;
 
-  RestartServer(ServerControlPanel panel) {
+  StartServer(ServerControlPanel panel) {
     this.panel = panel;
   }
 
@@ -22,7 +22,7 @@ public class RestartServer implements ServerActionListener {
             panel.getServerPort().getText(), panel.getSharedDirectoriesPanel().getSharedDirectories());
     if (isNumber(params.getServerPort())) {
       try {
-        PcConnectServer.restart(params);
+        PcConnectServer.start(params);
       } catch (Exception ex) {
         showError(panel, ex.getMessage());
       }

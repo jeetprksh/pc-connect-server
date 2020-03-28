@@ -3,6 +3,8 @@ package com.jeetprksh.pcconnect.ui.root;
 import com.jeetprksh.pcconnect.ui.root.server.ServerControlPanel;
 import com.jeetprksh.pcconnect.ui.root.server.SharedDirectoriesPanel;
 
+import java.awt.BorderLayout;
+
 import javax.swing.*;
 
 /*
@@ -25,8 +27,8 @@ public class RootFrame extends JFrame {
     this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
     this.setResizable(false);
-    this.add(serverControlPanel);
-    this.add(sharedDirectoriesPanel);
+    this.add(serverControlPanel, BorderLayout.NORTH);
+    this.add(sharedDirectoriesPanel, BorderLayout.CENTER);
   }
 
 }
