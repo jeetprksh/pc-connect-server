@@ -20,7 +20,7 @@ public class PcConnectServer {
 
   private static Logger logger = Logger.getLogger(PcConnectServer.class.getName());
 
-  private static final String DEFAULT_APP_PORT = "8080";
+  private static final String DEFAULT_APP_PORT = "8088";
   private static ConfigurableApplicationContext context;
   private static List<String> sharedDirectories = new ArrayList<>();
 

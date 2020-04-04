@@ -15,8 +15,11 @@ public class CommonControllerAdvise {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<? extends Response> exception(Exception ex) {
     if (ex.getMessage().equalsIgnoreCase("Invalid Token"))
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+      return ResponseEntity.status(HttpStatus.FORBIDDEN)
           .body(new Response(false, ex.getMessage(), null));
+    else if (ex.getMessage().equalsIgnoreCase("Invalid Code"))
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+              .body(new Response(false, ex.getMessage(), null));
     else
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
           .body(new Response(false, ex.getMessage(), null));
