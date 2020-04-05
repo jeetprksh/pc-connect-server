@@ -38,6 +38,7 @@ public class ItemServiceImpl implements ItemService {
     File file = new File(requestedPath);
 
     if (!file.exists()) throw new Exception("Invalid path");
+    if (!file.isDirectory()) throw new Exception("Specified path not a directory");
 
     return Arrays.stream(file.listFiles())
         .filter(f -> !f.isHidden())
