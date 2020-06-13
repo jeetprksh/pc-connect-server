@@ -20,7 +20,7 @@ public class AuthServiceImpl implements AuthService {
   private final Logger logger = Logger.getLogger(AuthServiceImpl.class.getName());
 
   // A <token, userName> map
-  private Map<String, String> tokenMap = new HashMap<>();
+  private final Map<String, String> tokenMap = new HashMap<>();
 
   private String code;
 

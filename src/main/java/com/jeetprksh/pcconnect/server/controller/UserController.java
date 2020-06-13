@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * */
 @CrossOrigin
 @RestController()
-public class UserContoller {
+public class UserController {
 
   @Autowired
   private AuthService authService;
@@ -29,4 +29,6 @@ public class UserContoller {
     Token token = authService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
     return ResponseEntity.ok().body(new Response(true, "Code Validated", token));
   }
+
+
 }
