@@ -7,9 +7,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
+
+import javax.security.sasl.AuthenticationException;
 
 /*
  * @author Jeet Prakash
@@ -38,7 +41,7 @@ public class AuthService {
 
   public String verifyToken(String token) throws Exception {
     String userName = this.tokenMap.get(token);
-    if (userName != null) {
+    if (!Objects.isNull(userName)) {
       return userName;
     } else {
       throw new Exception("Invalid Token");

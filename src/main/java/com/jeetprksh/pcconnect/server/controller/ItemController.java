@@ -33,14 +33,8 @@ public class ItemController {
 
   private final Logger logger = Logger.getLogger(ItemController.class.getName());
 
-  private ItemService itemService;
-  private AuthService authService;
-
-  @Autowired
-  public ItemController(ItemService itemService, AuthService authService) {
-    this.itemService = itemService;
-    this.authService = authService;
-  }
+  @Autowired private ItemService itemService;
+  @Autowired private AuthService authService;
 
   @GetMapping("/items")
   public ResponseEntity<? extends Response> getItems(

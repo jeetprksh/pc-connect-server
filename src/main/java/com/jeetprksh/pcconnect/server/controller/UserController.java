@@ -31,5 +31,4 @@ public class UserController {
     return ResponseEntity.ok().body(new Response(true, "Code Validated", token));
   }
 
-
 }
