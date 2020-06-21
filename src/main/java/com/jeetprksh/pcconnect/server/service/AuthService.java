@@ -1,18 +1,18 @@
 package com.jeetprksh.pcconnect.server.service;
 
-import com.jeetprksh.pcconnect.server.entity.Token;
+import com.jeetprksh.pcconnect.server.entity.User;
+import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
-
-import javax.security.sasl.AuthenticationException;
 
 /*
  * @author Jeet Prakash
@@ -22,25 +22,26 @@ public class AuthService {
 
   private final Logger logger = Logger.getLogger(AuthService.class.getName());
 
-  // A <token, userName> map
-  private final Map<String, String> tokenMap = new HashMap<>();
+  private final Map<String, User> tokenMap = new HashMap<>();
 
   private String code;
 
-  public Token validateCode(VerifyCode verifyCode) throws Exception {
+  public VerifiedUser validateCode(VerifyCode verifyCode) throws Exception {
+    String userName = verifyCode.getName();
     if (!this.code.equals(verifyCode.getCode())) {
-      logger.info(verifyCode.getName() + " entered wrong code.");
+      logger.info(userName + " entered wrong code.");
       throw new Exception("Invalid Code");
     } else {
-      logger.info(verifyCode.getName() + " got verified.");
+      logger.info(userName + " got verified.");
       String token = UUID.randomUUID().toString();
-      this.tokenMap.put(token, verifyCode.getName());
-      return new Token(token);
+      String userId = generateUserId();
+      this.tokenMap.put(token, new User(userId, userName));
+      return new VerifiedUser(userId, userName, token);
     }
   }
 
-  public String verifyToken(String token) throws Exception {
-    String userName = this.tokenMap.get(token);
+  public User verifyToken(String token) throws Exception {
+    User userName = this.tokenMap.get(token);
     if (!Objects.isNull(userName)) {
       return userName;
     } else {
@@ -55,6 +56,15 @@ public class AuthService {
         .map(i -> Integer.toString(i))
         .reduce("", String::concat);
     return this.code;
+  }
+
+  private String generateUserId() {
+    Random random = new Random();
+    return random.ints(48, 122 + 1)
+            .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+            .limit(7)
+            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+            .toString();
   }
 
 }

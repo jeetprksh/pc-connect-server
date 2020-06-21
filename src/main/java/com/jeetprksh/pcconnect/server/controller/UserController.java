@@ -1,6 +1,6 @@
 package com.jeetprksh.pcconnect.server.controller;
 
-import com.jeetprksh.pcconnect.server.entity.Token;
+import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
 import com.jeetprksh.pcconnect.server.service.AuthService;
@@ -27,8 +27,8 @@ public class UserController {
   public ResponseEntity<? extends Response> verifyCode(
       @RequestParam(value = "name") String name,
       @RequestParam(value = "encoded") String encoded) throws Exception {
-    Token token = authService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
-    return ResponseEntity.ok().body(new Response(true, "Code Validated", token));
+    VerifiedUser verifiedUser = authService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
+    return ResponseEntity.ok().body(new Response(true, "User Verified", verifiedUser));
   }
 
 }

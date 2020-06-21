@@ -41,7 +41,7 @@ public class ItemController {
       @RequestParam(value = "root", required = false) String root,
       @RequestParam(value = "path", required = false) String path,
       @RequestHeader("token") String token) throws Exception {
-    String user = authService.verifyToken(token);
+    String user = authService.verifyToken(token).getName();
     logger.info(user + " accessed the path " + root + "::" + path);
 
     List<Item> items = (root == null) ? itemService.getRootItems() : itemService.getItems(root, path);
@@ -56,7 +56,7 @@ public class ItemController {
       @RequestParam(value = "path", required = false) String path,
       @RequestParam(value = "download", required = false) String download,
       @RequestHeader("token") String token) throws Exception {
-    String user = authService.verifyToken(token);
+    String user = authService.verifyToken(token).getName();
     logger.info(user + " accessed the file " + root + "::" + path);
 
     File file = itemService.downloadItem(root, path);
