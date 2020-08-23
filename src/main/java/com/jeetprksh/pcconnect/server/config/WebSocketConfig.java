@@ -9,13 +9,18 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
+import java.util.logging.Logger;
+
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
+  private final Logger logger = Logger.getLogger(WebSocketConfig.class.getName());
+
   @Autowired private AuthService authService;
 
   public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+    logger.info("Initializing websocket handlers");
     registry.addHandler(new WebSocketHandler(authService), "/websocket").setAllowedOrigins("*");
   }
 

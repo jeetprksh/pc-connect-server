@@ -6,7 +6,6 @@ import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 
 import org.springframework.stereotype.Component;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -24,11 +23,11 @@ public class AuthService {
 
   private final Map<String, User> tokenMap = new HashMap<>();
 
-  private String code;
+  private String serverAuthCode;
 
   public VerifiedUser validateCode(VerifyCode verifyCode) throws Exception {
     String userName = verifyCode.getName();
-    if (!this.code.equals(verifyCode.getCode())) {
+    if (!this.serverAuthCode.equals(verifyCode.getCode())) {
       logger.info(userName + " entered wrong code.");
       throw new Exception("Invalid Code");
     } else {
@@ -50,12 +49,12 @@ public class AuthService {
   }
 
   public String generateCode() {
-    this.code = new Random().ints(0, 9)
+    this.serverAuthCode = new Random().ints(0, 9)
         .limit(6)
         .boxed()
         .map(i -> Integer.toString(i))
         .reduce("", String::concat);
-    return this.code;
+    return this.serverAuthCode;
   }
 
   private String generateUserId() {

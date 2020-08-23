@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
  * */
 public class StartServer implements ServerActionListener {
 
-  private ServerControlPanel panel;
+  private final ServerControlPanel panel;
 
   StartServer(ServerControlPanel panel) {
     this.panel = panel;

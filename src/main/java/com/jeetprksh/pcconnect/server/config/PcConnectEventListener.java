@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Component
 public class PcConnectEventListener {
 
-  private static Logger logger = Logger.getLogger(PcConnectEventListener.class.getName());
+  private final Logger logger = Logger.getLogger(PcConnectEventListener.class.getName());
 
   private final ItemService itemService;
   private final AuthService authService;

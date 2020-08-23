@@ -3,6 +3,8 @@ package com.jeetprksh.pcconnect.ui;
 import com.jeetprksh.pcconnect.ui.root.RootFrame;
 
 import javax.swing.*;
+
+import java.awt.EventQueue;
 import java.util.logging.Logger;
 
 /*
@@ -10,9 +12,9 @@ import java.util.logging.Logger;
  * */
 public class UiLauncher {
 
-  private static Logger logger = Logger.getLogger(UiLauncher.class.getName());
+  private final Logger logger = Logger.getLogger(UiLauncher.class.getName());
 
-  private RootFrame rootFrame = new RootFrame();
+  private final RootFrame rootFrame = new RootFrame();
 
   public static void main(String args[]) {
     new UiLauncher().run();
@@ -20,7 +22,7 @@ public class UiLauncher {
 
   private void run() {
     logger.info("Starting Server UI.");
-    java.awt.EventQueue.invokeLater(() -> {
+    EventQueue.invokeLater(() -> {
       try {
         rootFrame.setVisible(true);
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

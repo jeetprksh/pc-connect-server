@@ -16,22 +16,20 @@ import java.util.stream.Collectors;
 @Component
 public class ItemService {
 
-  private final static Logger logger = Logger.getLogger(ItemService.class.getName());
+  private final Logger logger = Logger.getLogger(ItemService.class.getName());
 
-  private Map<String, File> rootMaps = new HashMap<>();
+  private final Map<String, File> rootMaps = new HashMap<>();
 
   public List<Item> getRootItems() {
+    logger.info("Getting the root item that are shared");
     return rootMaps
         .entrySet().stream()
-        .map(e -> new Item(e.getValue().getName(),
-            e.getValue().isDirectory(),
-            true,
-            e.getKey(),
-            ""))
+        .map(e -> new Item(e.getValue().getName(), e.getValue().isDirectory(), true, e.getKey(), ""))
         .collect(Collectors.toList());
   }
 
   public List<Item> getItems(String root, String path) throws Exception {
+    logger.info("Getting items from path " + path);
     String requestedPath = createRequestedPath(root, path);
     File file = new File(requestedPath);
 
@@ -49,6 +47,7 @@ public class ItemService {
   }
 
   public File downloadItem(String root, String path) throws Exception {
+    logger.info("Downloading the item on path " + path);
     String requestedPath = createRequestedPath(root, path);
     File file = new File(requestedPath);
 
@@ -59,6 +58,7 @@ public class ItemService {
   }
 
   public void initSharedRootDir() {
+    logger.info("Initializing shared root directories");
     PcConnectServer.getSharedDirectories()
         .forEach(dir -> rootMaps.put(Integer.toString(Objects.hashCode(dir)), new File(dir)));
   }

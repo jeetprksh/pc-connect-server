@@ -12,8 +12,8 @@ import javax.swing.*;
  * */
 public class RootFrame extends JFrame {
 
-  private ServerControlPanel serverControlPanel;
-  private SharedDirectoriesPanel sharedDirectoriesPanel;
+  private final ServerControlPanel serverControlPanel;
+  private final SharedDirectoriesPanel sharedDirectoriesPanel;
 
   public RootFrame() {
     sharedDirectoriesPanel = new SharedDirectoriesPanel();

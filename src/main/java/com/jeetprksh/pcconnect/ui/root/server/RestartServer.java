@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
  * */
 public class RestartServer implements ServerActionListener {
 
-  private ServerControlPanel panel;
+  private final ServerControlPanel panel;
 
   RestartServer(ServerControlPanel panel) {
     this.panel = panel;

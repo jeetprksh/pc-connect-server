@@ -14,7 +14,7 @@ public class ServerControlPanel extends JPanel {
   private JButton stopServer;
   private JTextField serverPort;
 
-  private SharedDirectoriesPanel sharedDirectoriesPanel;
+  private final SharedDirectoriesPanel sharedDirectoriesPanel;
 
   public ServerControlPanel(SharedDirectoriesPanel sharedDirectoriesPanel) {
     this.sharedDirectoriesPanel = sharedDirectoriesPanel;
