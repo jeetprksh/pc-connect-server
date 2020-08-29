@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  * @author Jeet Prakash
  * */
 @Component
-public class AuthService {
+public class UserService {
 
-  private final Logger logger = Logger.getLogger(AuthService.class.getName());
+  private final Logger logger = Logger.getLogger(UserService.class.getName());
 
   private final Map<String, User> tokenMap = new HashMap<>();
 

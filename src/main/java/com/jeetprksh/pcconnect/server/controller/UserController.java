@@ -3,7 +3,7 @@ package com.jeetprksh.pcconnect.server.controller;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
-import com.jeetprksh.pcconnect.server.service.AuthService;
+import com.jeetprksh.pcconnect.server.service.UserService;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   @Autowired
-  private AuthService authService;
+  private UserService userService;
 
   @GetMapping("/user/code/verify")
   public ResponseEntity<? extends Response> verifyCode(
       @RequestParam(value = "name") String name,
       @RequestParam(value = "encoded") String encoded) throws Exception {
-    VerifiedUser verifiedUser = authService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
+    VerifiedUser verifiedUser = userService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
     return ResponseEntity.ok().body(new Response(true, "User Verified", verifiedUser));
   }
 

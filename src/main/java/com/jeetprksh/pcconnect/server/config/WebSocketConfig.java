@@ -1,6 +1,6 @@
 package com.jeetprksh.pcconnect.server.config;
 
-import com.jeetprksh.pcconnect.server.service.AuthService;
+import com.jeetprksh.pcconnect.server.service.UserService;
 import com.jeetprksh.pcconnect.server.websocket.WebSocketHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
   private final Logger logger = Logger.getLogger(WebSocketConfig.class.getName());
 
-  @Autowired private AuthService authService;
+  @Autowired private UserService userService;
 
   public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
     logger.info("Initializing websocket handlers");
-    registry.addHandler(new WebSocketHandler(authService), "/websocket").setAllowedOrigins("*");
+    registry.addHandler(new WebSocketHandler(userService), "/websocket").setAllowedOrigins("*");
   }
 
 }

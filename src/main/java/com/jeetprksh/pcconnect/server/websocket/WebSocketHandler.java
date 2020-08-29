@@ -2,7 +2,7 @@ package com.jeetprksh.pcconnect.server.websocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jeetprksh.pcconnect.server.entity.User;
-import com.jeetprksh.pcconnect.server.service.AuthService;
+import com.jeetprksh.pcconnect.server.service.UserService;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -21,11 +21,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
   private final Logger logger = Logger.getLogger(WebSocketHandler.class.getName());
 
   private final Map<User, WebSocketSession> userSessions = new ConcurrentHashMap<>();
-  private final AuthService authService;
+  private final UserService userService;
   private final ObjectMapper mapper = new ObjectMapper();
 
-  public WebSocketHandler(AuthService authService) {
-    this.authService = authService;
+  public WebSocketHandler(UserService userService) {
+    this.userService = userService;
   }
 
   @Override
@@ -37,7 +37,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     try {
       String token = session.getHandshakeHeaders().get("token").get(0);
-      User user = authService.verifyToken(token);
+      User user = userService.verifyToken(token);
       userSessions.put(user, session);
       for (User sessionUser : userSessions.keySet()) {
         if (!sessionUser.getId().equalsIgnoreCase(user.getId())) {
@@ -56,7 +56,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     String token = session.getHandshakeHeaders().get("token").get(0);
-    User user = authService.verifyToken(token);
+    User user = userService.verifyToken(token);
     userSessions.remove(user);
     logger.info("Removed WebSocket session for " + user.getName() + " " + user.getId());
   }

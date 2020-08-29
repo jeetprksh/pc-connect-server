@@ -1,6 +1,6 @@
 package com.jeetprksh.pcconnect.server.config;
 
-import com.jeetprksh.pcconnect.server.service.AuthService;
+import com.jeetprksh.pcconnect.server.service.UserService;
 import com.jeetprksh.pcconnect.server.service.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +19,19 @@ public class PcConnectEventListener {
   private final Logger logger = Logger.getLogger(PcConnectEventListener.class.getName());
 
   private final ItemService itemService;
-  private final AuthService authService;
+  private final UserService userService;
 
   @Autowired
-  public PcConnectEventListener(ItemService itemService, AuthService authService) {
+  public PcConnectEventListener(ItemService itemService, UserService userService) {
     this.itemService = itemService;
-    this.authService = authService;
+    this.userService = userService;
   }
 
   @EventListener(ContextRefreshedEvent.class)
   public void initSharedRootDir() {
     logger.info("Initializing shared root directories.");
     itemService.initSharedRootDir();
-    String code = authService.generateCode();
+    String code = userService.generateCode();
     logger.info("Access code for Users :: " + code);
   }
 }

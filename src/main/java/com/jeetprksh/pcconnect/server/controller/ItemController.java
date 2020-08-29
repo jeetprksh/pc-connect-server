@@ -2,7 +2,7 @@ package com.jeetprksh.pcconnect.server.controller;
 
 import com.jeetprksh.pcconnect.server.entity.Item;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
-import com.jeetprksh.pcconnect.server.service.AuthService;
+import com.jeetprksh.pcconnect.server.service.UserService;
 import com.jeetprksh.pcconnect.server.service.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +34,14 @@ public class ItemController {
   private final Logger logger = Logger.getLogger(ItemController.class.getName());
 
   @Autowired private ItemService itemService;
-  @Autowired private AuthService authService;
+  @Autowired private UserService userService;
 
   @GetMapping("/items")
   public ResponseEntity<? extends Response> getItems(
       @RequestParam(value = "root", required = false) String root,
       @RequestParam(value = "path", required = false) String path,
       @RequestHeader("token") String token) throws Exception {
-    String user = authService.verifyToken(token).getName();
+    String user = userService.verifyToken(token).getName();
     logger.info(user + " accessed the path " + root + "::" + path);
 
     List<Item> items = (root == null) ? itemService.getRootItems() : itemService.getItems(root, path);
@@ -56,7 +56,7 @@ public class ItemController {
       @RequestParam(value = "path", required = false) String path,
       @RequestParam(value = "download", required = false) String download,
       @RequestHeader("token") String token) throws Exception {
-    String user = authService.verifyToken(token).getName();
+    String user = userService.verifyToken(token).getName();
     logger.info(user + " accessed the file " + root + "::" + path);
 
     File file = itemService.downloadItem(root, path);
