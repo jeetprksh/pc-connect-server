@@ -1,11 +1,14 @@
 package com.jeetprksh.pcconnect.server.service;
 
+import com.jeetprksh.pcconnect.server.entity.OnlineUser;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
@@ -47,6 +50,12 @@ public class UserService {
     }
   }
 
+  public List<OnlineUser> getOnlineUsers() {
+    List<OnlineUser> onlineUsers = new ArrayList<>();
+    tokenMap.values().forEach(vu -> onlineUsers.add(new OnlineUser(vu.getUserId(), vu.getUserName())));
+    return onlineUsers;
+  }
+
   public String generateCode() {
     this.serverAuthCode = new Random().ints(0, 9)
         .limit(6)
@@ -64,5 +73,4 @@ public class UserService {
             .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
             .toString();
   }
-
 }

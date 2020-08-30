@@ -1,5 +1,6 @@
 package com.jeetprksh.pcconnect.server.controller;
 
+import com.jeetprksh.pcconnect.server.entity.OnlineUser;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
@@ -10,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /*
  * @author Jeet Prakash
@@ -29,6 +33,14 @@ public class UserController {
       @RequestParam(value = "encoded") String encoded) throws Exception {
     VerifiedUser verifiedUser = userService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
     return ResponseEntity.ok().body(new Response(true, "User Verified", verifiedUser));
+  }
+
+  @GetMapping("/user/online")
+  public ResponseEntity<? extends Response> getOnlineUsers(
+          @RequestHeader("token") String token) throws Exception {
+    userService.verifyToken(token);
+    List<OnlineUser> onlineUsers = userService.getOnlineUsers();
+    return ResponseEntity.ok().body(new Response(true, "Online Users", onlineUsers));
   }
 
 }
