@@ -1,7 +1,7 @@
 package com.jeetprksh.pcconnect.server.websocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jeetprksh.pcconnect.server.entity.User;
+import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.service.UserService;
 
 import org.springframework.web.socket.CloseStatus;
@@ -20,7 +20,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
   private final Logger logger = Logger.getLogger(WebSocketHandler.class.getName());
 
-  private final Map<User, WebSocketSession> userSessions = new ConcurrentHashMap<>();
+  private final Map<VerifiedUser, WebSocketSession> userSessions = new ConcurrentHashMap<>();
   private final UserService userService;
   private final ObjectMapper mapper = new ObjectMapper();
 
@@ -37,11 +37,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     try {
       String token = session.getHandshakeHeaders().get("token").get(0);
-      User user = userService.verifyToken(token);
+      VerifiedUser user = userService.verifyToken(token);
       userSessions.put(user, session);
-      for (User sessionUser : userSessions.keySet()) {
-        if (!sessionUser.getId().equalsIgnoreCase(user.getId())) {
-          Message message = new Message(MessageType.ONLINE.getType(), user.getId());
+      for (VerifiedUser sessionUser : userSessions.keySet()) {
+        if (!sessionUser.getUserId().equalsIgnoreCase(user.getUserId())) {
+          Message message = new Message(MessageType.ONLINE.getType(), user.getUserId());
           byte[] messageBytes = mapper.writeValueAsString(message).getBytes();
           session.sendMessage(new TextMessage(messageBytes));
         }
@@ -56,8 +56,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     String token = session.getHandshakeHeaders().get("token").get(0);
-    User user = userService.verifyToken(token);
+    VerifiedUser user = userService.verifyToken(token);
     userSessions.remove(user);
-    logger.info("Removed WebSocket session for " + user.getName() + " " + user.getId());
+    logger.info("Removed WebSocket session for " + user.getUserName() + " " + user.getUserId());
   }
 }

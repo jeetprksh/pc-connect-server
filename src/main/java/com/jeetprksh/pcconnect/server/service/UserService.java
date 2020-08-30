@@ -1,6 +1,5 @@
 package com.jeetprksh.pcconnect.server.service;
 
-import com.jeetprksh.pcconnect.server.entity.User;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 
@@ -21,7 +20,7 @@ public class UserService {
 
   private final Logger logger = Logger.getLogger(UserService.class.getName());
 
-  private final Map<String, User> tokenMap = new HashMap<>();
+  private final Map<String, VerifiedUser> tokenMap = new HashMap<>();
 
   private String serverAuthCode;
 
@@ -34,13 +33,13 @@ public class UserService {
       logger.info(userName + " got verified.");
       String token = UUID.randomUUID().toString();
       String userId = generateUserId();
-      this.tokenMap.put(token, new User(userId, userName));
+      this.tokenMap.put(token, new VerifiedUser(userId, userName, token));
       return new VerifiedUser(userId, userName, token);
     }
   }
 
-  public User verifyToken(String token) throws Exception {
-    User userName = this.tokenMap.get(token);
+  public VerifiedUser verifyToken(String token) throws Exception {
+    VerifiedUser userName = this.tokenMap.get(token);
     if (!Objects.isNull(userName)) {
       return userName;
     } else {
