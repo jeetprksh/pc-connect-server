@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ServerParams {
 
-  private String serverPort;
-  private List<String> sharedDirectories;
+  private final String serverPort;
+  private final List<String> sharedDirectories;
 
   public ServerParams(String serverPort, List<String> sharedDirectories) {
     this.serverPort = serverPort;

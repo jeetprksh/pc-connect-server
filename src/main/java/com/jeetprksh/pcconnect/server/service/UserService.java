@@ -29,15 +29,15 @@ public class UserService {
 
   public VerifiedUser validateCode(VerifyCode verifyCode) throws Exception {
     String userName = verifyCode.getName();
-    if (!this.serverAuthCode.equals(verifyCode.getCode())) {
-      logger.info(userName + " entered wrong code.");
-      throw new Exception("Invalid Code");
-    } else {
+    if (this.serverAuthCode.equals(verifyCode.getCode())) {
       logger.info(userName + " got verified.");
       String token = UUID.randomUUID().toString();
       String userId = generateUserId();
       this.tokenMap.put(token, new VerifiedUser(userId, userName, token));
       return new VerifiedUser(userId, userName, token);
+    } else {
+      logger.info(userName + " entered wrong code.");
+      throw new Exception("Invalid Code");
     }
   }
 
@@ -63,6 +63,12 @@ public class UserService {
         .map(i -> Integer.toString(i))
         .reduce("", String::concat);
     return this.serverAuthCode;
+  }
+
+  public void removeUser(String token) {
+    VerifiedUser verifiedUser = tokenMap.get(token);
+    tokenMap.remove(token);
+    logger.info("Removed " + verifiedUser.getUserName() + " from online users.");
   }
 
   private String generateUserId() {

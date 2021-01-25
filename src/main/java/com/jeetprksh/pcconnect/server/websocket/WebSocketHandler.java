@@ -58,6 +58,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     String token = session.getHandshakeHeaders().get("token").get(0);
     VerifiedUser user = userService.verifyToken(token);
     userSessions.remove(user);
+    userService.removeUser(token);
     logger.info("Removed WebSocket session for " + user.getUserName() + " " + user.getUserId());
   }
 }
