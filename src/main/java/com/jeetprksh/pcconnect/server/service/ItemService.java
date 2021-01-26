@@ -4,6 +4,7 @@ import com.jeetprksh.pcconnect.server.PcConnectServer;
 import com.jeetprksh.pcconnect.server.entity.Item;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.*;
@@ -55,6 +56,13 @@ public class ItemService {
     if (!file.isFile()) throw new Exception("Not a file, only a file can be downloaded.");
 
     return file;
+  }
+
+  public void uploadItem(String root, String path, MultipartFile file) throws Exception {
+    logger.info("Uploading the item on path " + path);
+    String filePath = createRequestedPath(root, path);
+    File diskFile = new File(filePath + "/" + file.getOriginalFilename());
+    file.transferTo(diskFile);
   }
 
   public void initSharedRootDir() {
