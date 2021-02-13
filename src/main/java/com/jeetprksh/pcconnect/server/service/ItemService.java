@@ -60,9 +60,14 @@ public class ItemService {
 
   public void uploadItem(String root, String path, MultipartFile file) throws Exception {
     logger.info("Uploading the item on path " + path);
-    String filePath = createRequestedPath(root, path);
-    File diskFile = new File(filePath + "/" + file.getOriginalFilename());
-    file.transferTo(diskFile);
+    try {
+      String filePath = createRequestedPath(root, path);
+      File diskFile = new File(filePath + "/" + file.getOriginalFilename());
+      file.transferTo(diskFile);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      throw new Exception(ex.getLocalizedMessage());
+    }
   }
 
   public void initSharedRootDir() {

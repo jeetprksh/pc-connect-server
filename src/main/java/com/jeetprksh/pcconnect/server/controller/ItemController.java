@@ -77,7 +77,7 @@ public class ItemController {
   }
 
   @PostMapping("/item/upload")
-  public ResponseEntity<Resource> uploadItem(
+  public ResponseEntity<? extends Response> uploadItem(
       @RequestParam(value = "root") String root,
       @RequestParam(value = "path") String path,
       @RequestParam("file") MultipartFile file,
@@ -85,7 +85,9 @@ public class ItemController {
     String user = userService.verifyToken(token).getUserName();
     logger.info(user + " uploading the file at " + root + "::" + path);
     itemService.uploadItem(root, path, file);
-    return ResponseEntity.ok().build();
+
+    Response response = new Response(true, "Upload Item", null);
+    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(response);
   }
 
 }
