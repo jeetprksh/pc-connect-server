@@ -38,14 +38,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
     try {
       String token = session.getHandshakeHeaders().get("token").get(0);
       VerifiedUser user = userService.verifyToken(token);
-      userSessions.put(user, session);
-      for (VerifiedUser sessionUser : userSessions.keySet()) {
-        if (!sessionUser.getUserId().equalsIgnoreCase(user.getUserId())) {
-          Message message = new Message(MessageType.ONLINE.getType(), user.getUserId());
-          byte[] messageBytes = mapper.writeValueAsString(message).getBytes();
-          session.sendMessage(new TextMessage(messageBytes));
-        }
+      for (Map.Entry<VerifiedUser, WebSocketSession> userSession : userSessions.entrySet()) {
+        Message message = new Message(MessageType.ONLINE.getType(), user.getUserId());
+        byte[] messageBytes = mapper.writeValueAsString(message).getBytes();
+        userSession.getValue().sendMessage(new TextMessage(messageBytes));
       }
+      userSessions.put(user, session);
       logger.info("Added WebSocket session for " + user);
     } catch (Exception ex) {
       ex.printStackTrace();
