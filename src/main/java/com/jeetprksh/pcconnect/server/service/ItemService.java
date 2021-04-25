@@ -71,9 +71,9 @@ public class ItemService {
   }
 
   public void initSharedRootDir() {
-    logger.info("Initializing shared root directories");
-    PcConnectServer.getSharedDirectories()
-        .forEach(dir -> rootMaps.put(Integer.toString(Objects.hashCode(dir)), new File(dir)));
+    List<String> directories = PcConnectServer.getSharedDirectories();
+    logger.info("Initializing shared root directories: " + directories);
+    directories.forEach(dir -> rootMaps.put(Integer.toString(Objects.hashCode(dir)), new File(dir)));
   }
 
   private String createRequestedPath(String root, String path) {

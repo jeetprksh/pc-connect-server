@@ -59,7 +59,7 @@ public class ItemController {
       @RequestParam(value = "download", required = false) String download,
       @RequestHeader("token") String token) throws Exception {
     String user = userService.verifyToken(token).getUserName();
-    logger.info(user + " accessed the file " + root + "::" + path);
+    logger.info(user + " downloading the file " + root + "::" + path);
 
     File file = itemService.downloadItem(root, path);
     InputStreamResource resource = new InputStreamResource(new FileInputStream(file));

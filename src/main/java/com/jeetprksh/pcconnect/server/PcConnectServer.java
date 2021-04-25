@@ -7,6 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,17 +21,17 @@ public class PcConnectServer {
 
   private static final Logger logger = Logger.getLogger(PcConnectServer.class.getName());
 
-  private static final String DEFAULT_APP_PORT = "8088";
   private static ConfigurableApplicationContext context;
   private static List<String> sharedDirectories = new ArrayList<>();
 
   public static void main(String[] args) {
-    ServerParams params = new ServerParams(DEFAULT_APP_PORT, new ArrayList<>());
+    logger.info("Starting server at default port");
+    ServerParams params = new ServerParams("8088", Arrays.asList("C:\\PCConnect"));
     start(params);
   }
 
   public static void start(ServerParams serverParams) {
-    logger.info("Starting server at default port");
+    logger.info("Starting server at port: " + serverParams.getServerPort());
     verifyPort(serverParams.getServerPort());
     sharedDirectories = serverParams.getSharedDirectories();
     if (Objects.isNull(context) || !context.isActive()) {
@@ -52,9 +53,14 @@ public class PcConnectServer {
   }
 
   public static void stop() {
+    logger.info("Stopping the server");
     if (!Objects.isNull(context)) {
       context.close();
     }
+  }
+
+  public static List<String> getSharedDirectories() {
+    return sharedDirectories;
   }
 
   private static void verifyPort(String port) {
@@ -62,9 +68,5 @@ public class PcConnectServer {
     if (intPort < 0 || intPort > 65535) {
       throw new InvalidParameterException("Invalid Port Number.");
     }
-  }
-
-  public static List<String> getSharedDirectories() {
-    return sharedDirectories;
   }
 }
