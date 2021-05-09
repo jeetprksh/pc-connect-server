@@ -6,14 +6,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.logging.Logger;
+
 /*
  * @author Jeet Prakash
  * */
 @ControllerAdvice
 public class CommonControllerAdvise {
 
+  private final Logger logger = Logger.getLogger(CommonControllerAdvise.class.getName());
+
   @ExceptionHandler(Exception.class)
   public ResponseEntity<? extends Response> exception(Exception ex) {
+    logger.severe("Error while serving the request: " + ex.getLocalizedMessage());
     if (ex.getMessage().equalsIgnoreCase("Invalid Token"))
       return ResponseEntity.status(HttpStatus.FORBIDDEN)
           .body(new Response(false, ex.getMessage(), null));
