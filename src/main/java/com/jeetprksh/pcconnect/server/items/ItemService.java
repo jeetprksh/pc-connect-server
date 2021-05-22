@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnect.server.service;
+package com.jeetprksh.pcconnect.server.items;
 
 import com.jeetprksh.pcconnect.server.PcConnectServer;
 import com.jeetprksh.pcconnect.server.entity.Item;

@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnect.server.controller;
+package com.jeetprksh.pcconnect.server.config;
 
 import com.jeetprksh.pcconnect.server.entity.http.Response;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,10 @@
-package com.jeetprksh.pcconnect.server.controller;
+package com.jeetprksh.pcconnect.server.users;
 
 import com.jeetprksh.pcconnect.server.entity.OnlineUser;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
-import com.jeetprksh.pcconnect.server.service.UserService;
+import com.jeetprksh.pcconnect.server.users.UserService;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;

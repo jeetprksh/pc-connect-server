@@ -1,7 +1,7 @@
 package com.jeetprksh.pcconnect.server.config;
 
-import com.jeetprksh.pcconnect.server.service.UserService;
-import com.jeetprksh.pcconnect.server.service.ItemService;
+import com.jeetprksh.pcconnect.server.users.UserService;
+import com.jeetprksh.pcconnect.server.items.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;

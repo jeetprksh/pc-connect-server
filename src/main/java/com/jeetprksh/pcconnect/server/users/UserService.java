@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnect.server.service;
+package com.jeetprksh.pcconnect.server.users;
 
 import com.jeetprksh.pcconnect.server.entity.OnlineUser;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;

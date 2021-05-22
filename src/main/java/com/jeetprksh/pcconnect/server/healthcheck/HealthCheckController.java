@@ -1,4 +1,4 @@
-package com.jeetprksh.pcconnect.server.controller;
+package com.jeetprksh.pcconnect.server.healthcheck;
 
 import com.jeetprksh.pcconnect.server.entity.Test;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  * */
 @CrossOrigin
 @RestController()
-public class TestController {
+public class HealthCheckController {
 
-  @GetMapping("/connect/test")
+  @GetMapping("/connect/ping")
   public ResponseEntity<? extends Response> test() {
-    Response res = new Response(true, "Test Ping.", new Test("I am OK!"));
+    Response res = new Response(true, "Pong.", new Test("I am OK!"));
     return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(res);
   }
 

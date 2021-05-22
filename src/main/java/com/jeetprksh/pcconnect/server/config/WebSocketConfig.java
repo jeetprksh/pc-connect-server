@@ -1,6 +1,6 @@
 package com.jeetprksh.pcconnect.server.config;
 
-import com.jeetprksh.pcconnect.server.service.UserService;
+import com.jeetprksh.pcconnect.server.users.UserService;
 import com.jeetprksh.pcconnect.server.websocket.WebSocketHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
