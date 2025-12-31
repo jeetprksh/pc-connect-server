@@ -6,7 +6,6 @@ import com.jeetprksh.pcconnect.server.entity.VerifyCode;
 import com.jeetprksh.pcconnect.server.entity.http.Response;
 import com.jeetprksh.pcconnect.server.users.UserService;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Base64;
 import java.util.List;
 
 /*
@@ -31,7 +31,7 @@ public class UserController {
   public ResponseEntity<? extends Response> verifyCode(
       @RequestParam(value = "name") String name,
       @RequestParam(value = "encoded") String encoded) throws Exception {
-    VerifiedUser verifiedUser = userService.validateCode(new VerifyCode(name, new String(Base64.decodeBase64(encoded))));
+    VerifiedUser verifiedUser = userService.validateCode(new VerifyCode(name, new String(Base64.getDecoder().decode(encoded))));
     return ResponseEntity.ok().body(new Response(true, "User Verified", verifiedUser));
   }
 

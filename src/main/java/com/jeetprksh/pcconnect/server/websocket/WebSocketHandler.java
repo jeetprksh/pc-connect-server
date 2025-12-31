@@ -1,6 +1,5 @@
 package com.jeetprksh.pcconnect.server.websocket;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jeetprksh.pcconnect.server.entity.VerifiedUser;
 import com.jeetprksh.pcconnect.server.users.UserService;
 
@@ -8,6 +7,7 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

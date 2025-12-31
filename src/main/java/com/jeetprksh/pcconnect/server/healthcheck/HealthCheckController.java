@@ -18,7 +18,7 @@ public class HealthCheckController {
   @GetMapping("/connect/ping")
   public ResponseEntity<? extends Response> test() {
     Response res = new Response(true, "Pong.", new Test("I am OK!"));
-    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8).body(res);
+    return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(res);
   }
 
 }
